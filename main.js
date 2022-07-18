@@ -189,8 +189,9 @@ let femaleNames = [
 const name = document.querySelector(".name");
 const button = document.querySelector(".generate");
 const nameSelect = document.querySelector("#gender");
-let generateName;
+const dob = document.querySelector(".dob");
 
+// functions
 function generateMaleName() {
   let generateName = `${
     maleNames[Math.floor(Math.random() * maleNames.length)]
@@ -205,8 +206,21 @@ function generateFemaleName() {
   name.textContent = generateName;
 }
 
+function generateDOB() {
+  const min = 1935;
+  const max = 2000;
+  let dateOfBirth = `${Math.floor(Math.random() * 12) + 1}/${
+    Math.floor(Math.random() * 30) + 1
+  }/${Math.floor(Math.random() * (max - min + 1) + min)}`;
+  console.log(dateOfBirth);
+
+  dob.innerHTML = `<strong>DOB:</strong> ${dateOfBirth}`;
+}
+
+// main execution
 button.addEventListener("click", function () {
   let nameSelectValue = nameSelect.options[nameSelect.selectedIndex].value;
 
   nameSelectValue === "Male" ? generateMaleName() : generateFemaleName();
+  generateDOB();
 });
