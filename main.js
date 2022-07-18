@@ -113,7 +113,7 @@ const lastNames = [
   "Gray",
 ];
 
-let femaleNames = [
+const femaleNames = [
   "Olivia",
   "Emma",
   "Charlotte",
@@ -186,10 +186,39 @@ let femaleNames = [
   "Kennedy",
 ];
 
+const occupations = [
+  "Actor",
+  "Doctor",
+  "Lawyer",
+  "Teacher",
+  "Architect",
+  "Musician",
+  "Engineer",
+  "Film Director",
+  "Journalist",
+  "Nurse",
+  "Author",
+  "Scientist",
+  "Chef",
+  "College Professor",
+  "Photographer",
+  "Police Officer",
+  "Veterinarian",
+  "Dentist",
+  "Farmer",
+  "President",
+  "Artist",
+  "Athlete",
+  "Computer Programmer",
+  "Firefighter",
+  "Inventor",
+];
+
 const name = document.querySelector(".name");
 const button = document.querySelector(".generate");
 const nameSelect = document.querySelector("#gender");
 const dob = document.querySelector(".dob");
+const occupation = document.querySelector(".occupation");
 
 // functions
 function generateMaleName() {
@@ -217,10 +246,19 @@ function generateDOB() {
   dob.innerHTML = `<strong>DOB:</strong> ${dateOfBirth}`;
 }
 
+function generateOccupation() {
+  let randomOccupation = `${
+    occupations[Math.floor(Math.random() * occupations.length)]
+  }`;
+
+  occupation.innerHTML = `<strong>Occupation:</strong> ${randomOccupation}`;
+}
+
 // main execution
 button.addEventListener("click", function () {
   let nameSelectValue = nameSelect.options[nameSelect.selectedIndex].value;
 
   nameSelectValue === "Male" ? generateMaleName() : generateFemaleName();
   generateDOB();
+  generateOccupation();
 });
