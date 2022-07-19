@@ -1,3 +1,4 @@
+// data
 const maleNames = [
   "Liam",
   "Noah",
@@ -214,11 +215,53 @@ const occupations = [
   "Inventor",
 ];
 
+let cities = {
+  omaha: {
+    city: "Omaha",
+    state: "Nebraska",
+    zip: ["68102", "68116", "68198"],
+    areaCode: ["302", "402"],
+  },
+
+  saltLake: {
+    city: "Salt Lake City",
+    state: "Utah",
+    zip: ["84095", "84065", "84121"],
+    areaCode: ["385", "801"],
+  },
+
+  sanFran: {
+    city: "San Francisco",
+    state: "California",
+    zip: ["94016", "94102", "94117"],
+    areaCode: ["415", "209", "510"],
+  },
+
+  chicago: {
+    city: "Chicago",
+    state: "Illinois",
+    zip: ["60007", "60608", "60602"],
+    areaCode: ["312", "773"],
+  },
+
+  philly: {
+    city: "Philadelphia",
+    state: "Pennsylvania",
+    zip: ["19019", "19050", "19082"],
+    areaCode: ["267", "215"],
+  },
+};
+
+const emailDomain = ["@gmail.com", "@yahoo.com", "@outlook.com", "@AOL.com"];
+
+// selectors
 const name = document.querySelector(".name");
 const button = document.querySelector(".generate");
 const nameSelect = document.querySelector("#gender");
 const dob = document.querySelector(".dob");
 const occupation = document.querySelector(".occupation");
+const phone = document.querySelector(".phone");
+const email = document.querySelector(".email");
 
 // functions
 function generateMaleName() {
@@ -241,7 +284,6 @@ function generateDOB() {
   let dateOfBirth = `${Math.floor(Math.random() * 12) + 1}/${
     Math.floor(Math.random() * 30) + 1
   }/${Math.floor(Math.random() * (max - min + 1) + min)}`;
-  console.log(dateOfBirth);
 
   dob.innerHTML = `<strong>DOB:</strong> ${dateOfBirth}`;
 }
@@ -254,6 +296,24 @@ function generateOccupation() {
   occupation.innerHTML = `<strong>Occupation:</strong> ${randomOccupation}`;
 }
 
+function generateEmail() {}
+
+function generatePhoneNumber() {
+  let randomCity = Object.keys(cities);
+  let chosenCity = randomCity[Math.floor(Math.random() * randomCity.length)];
+  let generateAreaCode =
+    cities[chosenCity].areaCode[
+      Math.floor(Math.random() * cities[chosenCity].areaCode.length)
+    ];
+
+  let randomPhoneNumber = `${Math.floor(
+    Math.random() * (999 - 100 + 1) + 100
+  )} - 
+  ${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
+
+  phone.innerHTML = `<strong>Phone:</strong> (${generateAreaCode}) ${randomPhoneNumber}`;
+}
+
 // main execution
 button.addEventListener("click", function () {
   let nameSelectValue = nameSelect.options[nameSelect.selectedIndex].value;
@@ -261,4 +321,5 @@ button.addEventListener("click", function () {
   nameSelectValue === "Male" ? generateMaleName() : generateFemaleName();
   generateDOB();
   generateOccupation();
+  generatePhoneNumber();
 });
