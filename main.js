@@ -262,6 +262,9 @@ const dob = document.querySelector(".dob");
 const occupation = document.querySelector(".occupation");
 const phone = document.querySelector(".phone");
 const email = document.querySelector(".email");
+const city = document.querySelector(".city");
+const state = document.querySelector(".state");
+const zip = document.querySelector(".zip");
 
 // functions
 function generateMaleName() {
@@ -296,7 +299,7 @@ function generateOccupation() {
   occupation.innerHTML = `<strong>Occupation:</strong> ${randomOccupation}`;
 }
 
-function generatePhoneNumber() {
+function generatePhoneCityStateZip() {
   let randomCity = Object.keys(cities);
   let chosenCity = randomCity[Math.floor(Math.random() * randomCity.length)];
   let generateAreaCode =
@@ -310,6 +313,14 @@ function generatePhoneNumber() {
     ${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
 
   phone.innerHTML = `<strong>Phone:</strong> (${generateAreaCode}) ${randomPhoneNumber}`;
+
+  city.innerHTML = `<strong>City:</strong> ${cities[chosenCity].city}`;
+  state.innerHTML = `<strong>State:</strong> ${cities[chosenCity].state}`;
+  zip.innerHTML = `<strong>Zip:</strong> ${
+    cities[chosenCity].zip[
+      Math.floor(Math.random()) * cities[chosenCity].zip.length
+    ]
+  }`;
 }
 
 function generateEmail() {
@@ -327,6 +338,6 @@ button.addEventListener("click", function () {
   nameSelectValue === "Male" ? generateMaleName() : generateFemaleName();
   generateDOB();
   generateOccupation();
-  generatePhoneNumber();
+  generatePhoneCityStateZip();
   generateEmail();
 });
