@@ -296,8 +296,6 @@ function generateOccupation() {
   occupation.innerHTML = `<strong>Occupation:</strong> ${randomOccupation}`;
 }
 
-function generateEmail() {}
-
 function generatePhoneNumber() {
   let randomCity = Object.keys(cities);
   let chosenCity = randomCity[Math.floor(Math.random() * randomCity.length)];
@@ -309,9 +307,17 @@ function generatePhoneNumber() {
   let randomPhoneNumber = `${Math.floor(
     Math.random() * (999 - 100 + 1) + 100
   )} - 
-  ${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
+    ${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
 
   phone.innerHTML = `<strong>Phone:</strong> (${generateAreaCode}) ${randomPhoneNumber}`;
+}
+
+function generateEmail() {
+  personName = name.textContent.split(" ");
+  let randomEmail = emailDomain[Math.floor(Math.random() * emailDomain.length)];
+  email.innerHTML = `<strong>Email:</strong> ${personName[0].split("")[0]}${
+    personName[1]
+  }${Math.floor(Math.random() * 99) + 1}${randomEmail}`.toLowerCase();
 }
 
 // main execution
@@ -322,4 +328,5 @@ button.addEventListener("click", function () {
   generateDOB();
   generateOccupation();
   generatePhoneNumber();
+  generateEmail();
 });
