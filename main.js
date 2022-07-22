@@ -310,6 +310,7 @@ const city = document.querySelector(".city");
 const state = document.querySelector(".state");
 const zip = document.querySelector(".zip");
 const address = document.querySelector(".address");
+const age = document.querySelector(".age");
 
 // functions
 function generateMaleName() {
@@ -333,7 +334,15 @@ function generateDOB() {
     Math.floor(Math.random() * 30) + 1
   }/${Math.floor(Math.random() * (max - min + 1) + min)}`;
 
+  // calculates age
+  let birthDate = new Date(dateOfBirth);
+  let monthDifference = Date.now() - birthDate.getTime();
+  let ageDate = new Date(monthDifference);
+  let year = ageDate.getUTCFullYear();
+  let calcAge = Math.abs(year - 1970);
+
   dob.innerHTML = `<strong>DOB:</strong> ${dateOfBirth}`;
+  age.innerHTML = `<strong>Age:</strong> ${calcAge}`;
 }
 
 function generateOccupation() {
