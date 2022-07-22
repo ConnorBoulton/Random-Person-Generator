@@ -215,6 +215,44 @@ const occupations = [
   "Inventor",
 ];
 
+const streetNames = [
+  "Dodge",
+  "Main",
+  "Pine",
+  "Maple",
+  "Cedar",
+  "Eigth",
+  "Elm",
+  "Washington",
+  "Ninth",
+  "Lake",
+  "Oak",
+  "Emmaline",
+  "Park",
+  "Pink",
+  "Floyd",
+  "Best",
+  "Band",
+];
+
+const streetAbbv = [
+  "St",
+  "Blvd",
+  "Cir",
+  "Cor",
+  "Ct",
+  "Dr",
+  "Hts",
+  "Mtn",
+  "Prk",
+  "Plz",
+  "Rd",
+  "Way",
+  "Ave",
+];
+
+const streetDirections = ["N", "E", "S", "W"];
+
 let cities = {
   omaha: {
     city: "Omaha",
@@ -252,7 +290,13 @@ let cities = {
   },
 };
 
-const emailDomain = ["@gmail.com", "@yahoo.com", "@outlook.com", "@AOL.com"];
+const emailDomain = [
+  "@gmail.com",
+  "@yahoo.com",
+  "@outlook.com",
+  "@AOL.com",
+  "@iCloud.com",
+];
 
 // selectors
 const name = document.querySelector(".name");
@@ -265,6 +309,7 @@ const email = document.querySelector(".email");
 const city = document.querySelector(".city");
 const state = document.querySelector(".state");
 const zip = document.querySelector(".zip");
+const address = document.querySelector(".address");
 
 // functions
 function generateMaleName() {
@@ -331,6 +376,21 @@ function generateEmail() {
   }${Math.floor(Math.random() * 99) + 1}${randomEmail}`.toLowerCase();
 }
 
+function generateStreetAddress() {
+  let randomStreet = `${Math.floor(Math.random() * (8500 - 100 + 1) + 100)}`;
+  let randomStreetName = `${
+    streetNames[Math.floor(Math.random() * streetNames.length)]
+  }`;
+  let randomStreetDirection = `${
+    streetDirections[Math.floor(Math.random() * streetDirections.length)]
+  }`;
+  let randomStreetAbbv = `${
+    streetAbbv[Math.floor(Math.random() * streetAbbv.length)]
+  }`;
+
+  address.innerHTML = `<strong>Address</strong> ${randomStreet} ${randomStreetDirection} ${randomStreetName} ${randomStreetAbbv}`;
+}
+
 // main execution
 button.addEventListener("click", function () {
   let nameSelectValue = nameSelect.options[nameSelect.selectedIndex].value;
@@ -340,4 +400,5 @@ button.addEventListener("click", function () {
   generateOccupation();
   generatePhoneCityStateZip();
   generateEmail();
+  generateStreetAddress();
 });
