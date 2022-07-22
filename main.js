@@ -312,27 +312,34 @@ const zip = document.querySelector(".zip");
 const address = document.querySelector(".address");
 const age = document.querySelector(".age");
 
+// refactoring code functions
+const randomizeArray = (x) => {
+  return x[Math.floor(Math.random() * x.length)];
+};
+
+const randomizeBetweenTwoNums = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 // functions
 function generateMaleName() {
-  let generateName = `${
-    maleNames[Math.floor(Math.random() * maleNames.length)]
-  } ${lastNames[Math.floor(Math.random() * lastNames.length)]}`;
+  let generateName = `${randomizeArray(maleNames)} ${randomizeArray(
+    lastNames
+  )}`;
   name.textContent = generateName;
 }
 
 function generateFemaleName() {
-  let generateName = `${
-    femaleNames[Math.floor(Math.random() * femaleNames.length)]
-  } ${lastNames[Math.floor(Math.random() * lastNames.length)]}`;
+  let generateName = `${randomizeArray(femaleNames)} ${randomizeArray(
+    lastNames
+  )}`;
   name.textContent = generateName;
 }
 
 function generateDOB() {
-  const min = 1935;
-  const max = 2000;
   let dateOfBirth = `${Math.floor(Math.random() * 12) + 1}/${
     Math.floor(Math.random() * 30) + 1
-  }/${Math.floor(Math.random() * (max - min + 1) + min)}`;
+  }/${randomizeBetweenTwoNums(1935, 2000)}`;
 
   // calculates age
   let birthDate = new Date(dateOfBirth);
@@ -346,25 +353,21 @@ function generateDOB() {
 }
 
 function generateOccupation() {
-  let randomOccupation = `${
-    occupations[Math.floor(Math.random() * occupations.length)]
-  }`;
+  let randomOccupation = `${randomizeArray(occupations)}`;
 
   occupation.innerHTML = `<strong>Occupation:</strong> ${randomOccupation}`;
 }
 
 function generatePhoneCityStateZip() {
   let randomCity = Object.keys(cities);
-  let chosenCity = randomCity[Math.floor(Math.random() * randomCity.length)];
+  let chosenCity = randomizeArray(randomCity);
   let generateAreaCode =
     cities[chosenCity].areaCode[
       Math.floor(Math.random() * cities[chosenCity].areaCode.length)
     ];
 
-  let randomPhoneNumber = `${Math.floor(
-    Math.random() * (999 - 100 + 1) + 100
-  )} - 
-    ${Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)}`;
+  let randomPhoneNumber = `${Math.floor(randomizeBetweenTwoNums(100, 999))} - 
+    ${randomizeBetweenTwoNums(1000, 9999)}`;
 
   phone.innerHTML = `<strong>Phone:</strong> (${generateAreaCode}) ${randomPhoneNumber}`;
 
@@ -379,23 +382,17 @@ function generatePhoneCityStateZip() {
 
 function generateEmail() {
   personName = name.textContent.split(" ");
-  let randomEmail = emailDomain[Math.floor(Math.random() * emailDomain.length)];
+  let randomEmail = randomizeArray(emailDomain);
   email.innerHTML = `<strong>Email:</strong> ${personName[0].split("")[0]}${
     personName[1]
   }${Math.floor(Math.random() * 99) + 1}${randomEmail}`.toLowerCase();
 }
 
 function generateStreetAddress() {
-  let randomStreet = `${Math.floor(Math.random() * (8500 - 100 + 1) + 100)}`;
-  let randomStreetName = `${
-    streetNames[Math.floor(Math.random() * streetNames.length)]
-  }`;
-  let randomStreetDirection = `${
-    streetDirections[Math.floor(Math.random() * streetDirections.length)]
-  }`;
-  let randomStreetAbbv = `${
-    streetAbbv[Math.floor(Math.random() * streetAbbv.length)]
-  }`;
+  let randomStreet = `${randomizeBetweenTwoNums(100, 8500)}`;
+  let randomStreetName = `${randomizeArray(streetNames)}`;
+  let randomStreetDirection = `${randomizeArray(streetDirections)}`;
+  let randomStreetAbbv = `${randomizeArray(streetAbbv)}`;
 
   address.innerHTML = `<strong>Address</strong> ${randomStreet} ${randomStreetDirection} ${randomStreetName} ${randomStreetAbbv}`;
 }
@@ -404,7 +401,7 @@ function generateStreetAddress() {
 button.addEventListener("click", function () {
   let nameSelectValue = nameSelect.options[nameSelect.selectedIndex].value;
 
-  nameSelectValue === "Male" ? generateMaleName() : generateFemaleName();
+  nameSelectValue === "Female" ? generateFemaleName() : generateMaleName();
   generateDOB();
   generateOccupation();
   generatePhoneCityStateZip();
