@@ -9,7 +9,8 @@ body {
 
 h1 {
   text-align: center;
-  padding-top: 10rem;
+  /* padding-top: 10rem; */
+  padding-top: 10%;
   font-size: 3em;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: #f5f5f5;
@@ -21,7 +22,8 @@ main {
   justify-content: space-between;
   align-items: center;
   background-color: blanchedalmond;
-  width: 50%;
+  width: 30%;
+  min-width: 400px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
@@ -30,6 +32,8 @@ main {
 }
 
 .gender-box {
+  display: flex;
+  flex-direction: column;
   padding: 1.2em 2em;
   font-size: 1.2rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -38,7 +42,6 @@ main {
 .generate {
   position: relative;
   padding: 1.1rem;
-  margin-left: 2em;
   margin-top: 1.2rem;
   font-size: 1.2rem;
   border: #222 solid 1px;
@@ -53,10 +56,9 @@ main {
 
 .info {
   display: grid;
-  grid-template-columns: 300px 2fr;
-  /* grid-template-columns: repeat(2fr, 300px); */
+  grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
   grid-gap: 1rem;
-  width: 80%;
+  width: 100%;
   padding: 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
@@ -70,4 +72,5 @@ strong {
 span {
   padding: 5px;
   border: 1px solid black;
+  /* display: flexbox; */
 }
